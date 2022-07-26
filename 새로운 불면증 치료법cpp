@@ -1,0 +1,35 @@
+#include <iostream>
+using namespace std;
+
+int getAns(int n)
+{
+    int initN = n, tmpN = initN;
+    string numStr = "0000000000";
+    for(int i = 1; ; i++) {
+        while(tmpN > 0) {
+            numStr[tmpN % 10] = '1';
+            tmpN /= 10;
+        }
+        if(numStr == "1111111111") {
+            return initN;
+        }
+        else {
+            initN += n;
+            tmpN = initN;
+        }
+    }
+}
+
+int main(void)
+{   
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL); cout.tie(NULL);
+
+    int t, n;
+    cin >> t;
+    for(int i = 1; i <= t; i++) {
+        cin >> n;
+        cout << "#" << i << " " << getAns(n) << '\n';
+    }
+    return 0;
+}
